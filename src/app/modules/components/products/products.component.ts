@@ -22,7 +22,7 @@ export class ProductsComponent implements OnInit {
     )
   }
   onChange(event:any){
-    console.log(event.target.value);
+
     this._ApiService.filterByCategory(event.target.value).subscribe(
       (response) => {
         console.log(response);
@@ -31,9 +31,6 @@ export class ProductsComponent implements OnInit {
         this.filteredLimit = response.total;
       }
     )
-    if(event.target.value == 'all'){
-      this.showProducts()
-    }
   }
   showProducts(){
     this._ApiService.getProducts().subscribe(

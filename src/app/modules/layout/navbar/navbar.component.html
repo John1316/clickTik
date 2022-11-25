@@ -1,14 +1,33 @@
-<header>
+<header class="header">
   <!-- <div class="container"></div> -->
+  <div class="container">
+    <div class="header__content">
 
-  <ul class="nav-links">
-    <div class="logo">
-        <img src="assets/images/icons/logo.png" alt="Logo Image">
+      <ul class="nav-links">
+        <div class="logo">
+            <img src="assets/images/icons/logo.png" alt="Logo Image">
+        </div>
+          <li><a routerLink="/">Home</a></li>
+      </ul>
+      <ul class="nav-links" >
+        <ng-container *ngIf="!isLogined">
+          <li><a routerLink="/login">Login</a></li>
+        </ng-container>
+        <ng-container *ngIf="isLogined">
+          <li class="mr-1 ">
+            <input type="text" class="form__input w-200" placeholder="Search ...">
+          </li>
+          <li class="navitem-menu">
+            <a>Account</a>
+            <ul class="dropdown">
+              <li><a (click)="logout()">Logout</a></li>
+            </ul>
+          </li>
+
+        </ng-container>
+
+      </ul>
     </div>
-      <li><a href="#">Home</a></li>
-  </ul>
-  <ul class="nav-links">
-      <li><a href="#">Login</a></li>
-  </ul>
+  </div>
 </header>
 

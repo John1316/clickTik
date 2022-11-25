@@ -1,25 +1,57 @@
-<main class="login_page">
+<main class="login login_page">
   <div class="card border-grey border-lighten-3 m-0">
     <div class="card__header border-0">
-      <img src="../images/icons/Content.png" alt="">
+      <img src="assets/images/icons/logo.png" alt="">
       <h3 class="card__header--h3">Log in to your account</h3>
       <p class="card__header--p"><span>Welcome back! Please enter your details.</span>
       </p>
     </div>
     <div class="card-content">
       <div class="card-body">
-        <form [formGroup]="loginForm"  class="form-horizontal form-simple" (ngSubmit)="onSubmit
+        <form [formGroup]="loginForm"  class="login__form" (ngSubmit)="onSubmit
         (loginForm)">
-          <div class="form-group">
-            <label for="">Email</label>
-
-            <input type="text" formControlName="email" class="card__input" id="user-name" placeholder="Enter your email" required="">
-
+          <div class="login__form--input">
+            <label for="">username</label>
+            <div class="form-group">
+              <input type="text" formControlName="username" class="card__input" id="user-name" placeholder="Enter your username" required="">
+              <button
+                *ngIf="loginForm.controls['username'].touched && loginForm.controls['username'].errors != null"
+                type="button" popover="Username is required"
+                popoverPlacement="right"
+                [popoverOnHover]="false"
+                [popoverAnimation]="true"
+                class="btn-danger validation"
+                triggers="mouseenter:mouseleave"
+                ><i class="las la-info"></i></button>
+            </div>
           </div>
-          <div class="form-group">
+          <div class="login__form--input">
             <label for="">Password</label>
-            <input type="password" formArrayName="password" class="card__input" id="user-password" placeholder="*****" required="">
+            <div class="form-group">
+              <input type="password" formControlName="password" class="card__input" id="user-password" placeholder="*****" required="">
+              <ng-container
+              *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].errors != null">
+              <button
+              *ngIf="loginForm.controls['password'].errors['required']"
+              type="button" popover="password is required"
+              popoverPlacement="right"
+              [popoverOnHover]="false"
+              [popoverAnimation]="true"
+              class="btn-danger validation"
+              triggers="mouseenter:mouseleave"
+              ><i class="las la-info"></i></button>
+              <button
+              *ngIf="loginForm.controls['password'].errors['minlength']"
+              type="button" popover="password is min length must be 3"
+              popoverPlacement="right"
+              [popoverOnHover]="false"
+              [popoverAnimation]="true"
+              class="btn-danger validation"
+              triggers="mouseenter:mouseleave"
+              ><i class="las la-info"></i></button>
+              </ng-container>
 
+            </div>
           </div>
 
           <button type="submit" class="btn btn_submit" [disabled]="loginForm.invalid"> Sign in</button>

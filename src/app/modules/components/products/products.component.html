@@ -4,18 +4,13 @@
       <div class="col-3">
         <div class="products__form--filter">
           <h4 class="products__h4">Products</h4>
-          <form action="" >
-
-            <div class="form-check">
-              <input (change)="onChange($event)"  class="form-check-input" name="category" type="radio" id="all" value="all">
-              <label class="form-check-label" for="all">All</label>
-            </div>
+          <div class="products__form" >
             <div class="form-check" *ngFor="let category of categories">
               <input (change)="onChange($event)"  class="form-check-input" name="category" type="radio" id="{{category}}" value="{{category}}">
               <label class="form-check-label" for="{{category}}">{{category}}</label>
             </div>
 
-          </form>
+          </div>
         </div>
       </div>
       <div class="col-9">
