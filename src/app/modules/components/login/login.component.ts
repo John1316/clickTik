@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
@@ -10,35 +10,37 @@ import { UserService } from 'src/app/core/services/user.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
+  error!: string;
+  loading!:boolean;
   constructor(
     private _UserService:UserService,
     private _AuthService:AuthService,
-    private _Router:Router
+    private _Router:Router,
+    private _Renderer2:Renderer2
   ) { }
   loginForm:FormGroup =  new FormGroup({
     'username' : new FormControl('', Validators.required ),
     'password' : new FormControl('', [Validators.required , Validators.minLength(3)]),
   })
   ngOnInit(): void {
-    if(localStorage.getItem('token')){
-      this._Router.navigateByUrl('/')
-    }
+
+  }
+  closeToastr(){
+    let closeToastr =  document.querySelector('.toast')
+    this._Renderer2.addClass(closeToastr, 'closed')
   }
   onSubmit(loginForm:FormGroup){
-    console.log(loginForm.value);
     this._UserService.login(loginForm.value).subscribe(
       (response) => {
-        console.log(response);
         localStorage.setItem('token' ,  response.token)
-        this._Router.navigateByUrl('/')
+        localStorage.setItem('user_id' ,  response.id)
+        localStorage.setItem('username' ,  response.username)
+        this._Router.navigate(['/products'])
+        this.loading = true
         // localStorage.setItem('userArray' ,  response)
         this._AuthService.saveCurrentUser();
       }, error => {
-        if(error){
-
-          console.log(error);
-        }
+          this.error = error.error.message
       }
     )
   }

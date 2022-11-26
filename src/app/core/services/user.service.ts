@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { IUser } from 'src/app/modules/models/user.interface';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -10,8 +11,8 @@ export class UserService {
 
   constructor(private _HttpClient:HttpClient) { }
   login(
-    loginData: Object
-  ):Observable<any>{
-    return this._HttpClient.post(`${environment.apiUrl}auth/login`, loginData)
+    loginData: IUser
+  ):Observable<IUser>{
+    return this._HttpClient.post<IUser>(`${environment.apiUrl}auth/login`, loginData)
   }
 }

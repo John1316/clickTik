@@ -73,6 +73,191 @@ button[type="submit"]{
   margin-right: auto;
   margin-left: auto;
 }
+// alert
+.alert{
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border-radius: 0.25rem;
+  position: fixed;
+  right: 0;
+  top: 200px;
+  min-width: 200px;
+  z-index: 99;
+  &-danger{
+    color: #721c24;
+    background-color: #f8d7da;
+  }
+  &-success{
+    color: #155724;
+    background-color: #d4edda;
+  }
+}
+// toastr
+.toast {
+  position: fixed;
+  top: 100px;
+  right: 0;
+  width: 300px;
+  height: 80px;
+  padding: .75rem 1.25rem;
+  margin-top: 1rem;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  animation: move 2s both;
+  z-index: 99;
+  &-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+  }
+  &-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+  }
+  &-warning {
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+  }
+  &-heading {
+    margin-top: 10px;
+  }
+  .close {
+    position: absolute;
+    top: 7px;
+    right: 10px;
+    font-size: 1.5em;
+    cursor: pointer;
+  }
+  &.closed{
+    right: -300px;
+  }
+}
+
+
+
+@keyframes move {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+// loader
+.loader{
+  position: fixed;
+  inset: 0;
+  background-color: rgba($mainColor, 0.5);
+  z-index: 99;
+  .lds-ellipsis {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    div {
+      position: absolute;
+      top: 33px;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: #fff;
+      animation-timing-function: cubic-bezier(0, 1, 1, 0);
+      &:nth-child(1) {
+        left: 8px;
+        animation: lds-ellipsis1 0.6s infinite;
+      }
+      &:nth-child(2) {
+        left: 8px;
+        animation: lds-ellipsis2 0.6s infinite;
+      }
+      &:nth-child(3) {
+        left: 32px;
+        animation: lds-ellipsis2 0.6s infinite;
+      }
+      &:nth-child(4) {
+        left: 56px;
+        animation: lds-ellipsis3 0.6s infinite;
+      }
+    }
+  }
+}
+
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(24px, 0);
+  }
+}
+
+
+// breadcrumb{
+  .breadcrumb {
+    padding: 0.8em 1em;
+    border-radius: 4px;
+    ol {
+      margin: 0;
+      padding-left: 0;
+      list-style: none;
+      li {
+        display: inline;
+        a{
+          font-size: 18px;
+          line-height: 22px;
+          color: #1E1E1E;
+          &:not(.disabled){
+            cursor: pointer;
+          }
+          &.disabled{
+            cursor: default;
+            text-transform: capitalize;
+          }
+        }
+        + li::before {
+          display: inline-block;
+          margin: 0 0.25em;
+          padding:0 10px;
+          font-size: 20px;
+          content: "/";
+        }
+      }
+    }
+  }
+
+  // nav.breadcrumb
+
+  // nav.breadcrumb
+
+  // nav.breadcrumb li
+
+  // nav.breadcrumb [aria-current="page"] {
+  //   color: #000;
+  //   font-weight: 700;
+  //   text-decoration: none;
+  // }
+
 // form
 .form-check{
   position: relative;
@@ -235,6 +420,33 @@ button[type="submit"]{
     align-items: center;
     justify-content: space-between;
     height: 100%;
+    &--cart{
+      position: relative;
+      &-img{
+        object-fit: contain;
+        height: 40px;
+        width: 40px;
+      }
+    }
+    &--counter{
+      position: absolute;
+      top: -7px;
+      right: -7px;
+      height: 20px;
+      width: 20px;
+      &-img{
+        width: 100%;
+      }
+      p{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        font-size: 12px;
+        font-weight: 700;
+
+      }
+    }
   }
   ul li.navitem-menu{
     position: relative;
@@ -362,7 +574,7 @@ button[type="submit"]{
 .toggle .line3{
   transform: rotate(45deg) translate(-5px,-6px);
 }
-
+//  form
 .form__input{
   display: block;
   width: 100%;
@@ -510,14 +722,25 @@ button[type="submit"]{
     background-color: #FFFFFF;
     border: 0.5px solid #424242;
     border-radius: 8px;
+    .image__container{
+      position: relative;
+    }
     &--img{
       width: 100%;
       height: 300px;
-      // object-fit: cover;
+      object-fit: contain;
       // object-position: center top;
       border-top-left-radius: 8px;
       border-top-right-radius: 8px;
-
+      &-badge{
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background-color: $mainColor;
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 10px;
+      }
     }
     &--body{
       padding: 10px;
@@ -619,49 +842,58 @@ button[type="submit"]{
   }
 
 }
-input[type=radio] + label {
-  display: block;
-  margin: 0.2em;
-  cursor: pointer;
-  padding: 0.2em;
-  font-family: 'Arial'
-}
-
+// filter category
 input[type=radio] {
   display: none;
+
+  + label{
+    display: block;
+    margin: 0.2em;
+    cursor: pointer;
+    padding: 0.2em;
+    font-family: 'Arial';
+    &::before {
+      content: "";
+
+      border: 0.1em solid #000;
+      border-radius: 0.2em;
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      padding-left: 0.2em;
+      padding-bottom: 0.3em;
+      margin-right: 0.5em;
+      vertical-align: bottom;
+      color: transparent;
+      transition: .2s;
+    }
+    &:active::before {
+      transform: scale(0);
+
+    }
+  }
+  &:checked + label::before {
+    background-color: $mainColor;
+    border-color: $mainColor;
+    color: #fff;
+    background-image: url('assets/images/icons/check.png');
+    background-position: center;
+    background-size: 75%;
+    background-repeat: no-repeat;
+  }
+  &.checked + label::before {
+    background-color: $mainColor;
+    border-color: $mainColor;
+    color: #fff;
+    background-image: url('assets/images/icons/check.png');
+    background-position: center;
+    background-size: 75%;
+    background-repeat: no-repeat;
+
+  }
 }
 
-input[type=radio] + label::before {
-  content: "";
 
-  border: 0.1em solid #000;
-  border-radius: 0.2em;
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  padding-left: 0.2em;
-  padding-bottom: 0.3em;
-  margin-right: 0.5em;
-  vertical-align: bottom;
-  color: transparent;
-  transition: .2s;
-}
-
-input[type=radio] + label:active::before {
-  transform: scale(0);
-
-}
-
-input[type=radio]:checked + label::before {
-  background-color: $mainColor;
-  border-color: $mainColor;
-  color: #fff;
-  background-image: url('assets/images/icons/check.png');
-  background-position: center;
-  background-size: 75%;
-  background-repeat: no-repeat;
-
-}
 // ngx pagination
 .ngx-pagination{
   display: flex;
@@ -691,26 +923,59 @@ input[type=radio]:checked + label::before {
     &.current{
       background-color: $mainColor !important;
     }
-
   }
-}
-.ngx-pagination .pagination-previous a:before, .ngx-pagination .pagination-previous.disabled:before
-{
-  content: "<" !important;
-  margin-right: 0 !important;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.ngx-pagination .pagination-next a:after, .ngx-pagination .pagination-next.disabled:after
-{
-  content: ">" !important;
-  margin-left: 0 !important;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  .pagination-previous a:before{
+    content: "<" !important;
+    margin-right: 0 !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .pagination-previous {
+    &.disabled{
+      &::before{
+
+        content: "<" !important;
+        margin-right: 0 !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    a{
+      &::before{
+
+        content: "<" !important;
+        margin-right: 0 !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+
+  .pagination-next {
+    &.disabled{
+      &::after{
+        content: ">" !important;
+        margin-left: 0 !important;
+        display: flex;
+        justify-content: center;
+      }
+    }
+    a{
+      &::after{
+        content: ">" !important;
+        margin-left: 0 !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
 
 }
+
 //
 popover-content{
   position: absolute;

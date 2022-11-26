@@ -15,7 +15,16 @@
         </ng-container>
         <ng-container *ngIf="isLogined">
           <li class="mr-1 ">
-            <input type="text" class="form__input w-200" placeholder="Search ...">
+            <input type="text" (keyup.enter)="searchString($event)" class="form__input w-200" placeholder="Search ...">
+          </li>
+          <li class="mr-1">
+            <div class="header__content--cart ">
+              <img class="header__content--cart-img" src="assets/images/icons/cart.png" alt="">
+              <div class="header__content--counter">
+                <img class="header__content--counter-img" src="assets/images/icons/cart_counter.png" alt="">
+                <p>{{totalCartItems}}</p>
+              </div>
+            </div>
           </li>
           <li class="navitem-menu">
             <a>Account</a>
