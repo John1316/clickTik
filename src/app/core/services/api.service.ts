@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IProduct } from 'src/app/modules/models/products.interface';
+import { IProduct, IProductResponse } from 'src/app/modules/models/products.interface';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -12,24 +12,35 @@ export class ApiService {
   constructor(
     private _HttpClient:HttpClient
   ) { }
-  getCategories():Observable<any>{
+  // get category
+
+  getCategories():Observable<string[]>{
     return this._HttpClient.get<string[]>(`${environment.apiUrl}products/categories`)
   }
-  getProducts():Observable<any>{
-    return this._HttpClient.get<IProduct>(`${environment.apiUrl}products?limit=100`)
+  // get products
+
+  getProducts():Observable<IProductResponse>{
+    return this._HttpClient.get<IProductResponse>(`${environment.apiUrl}products?limit=100`)
   }
-  filterByCategory(category_name:string):Observable<any>{
-    return this._HttpClient.get<IProduct>(`${environment.apiUrl}products/category/${category_name}`)
+    // filtered category
+
+  filterByCategory(category_name:string):Observable<IProductResponse>{
+    return this._HttpClient.get<IProductResponse>(`${environment.apiUrl}products/category/${category_name}`)
   }
-  filteredProducts(query:string):Observable<any>{
-    return this._HttpClient.get<IProduct>(`${environment.apiUrl}products/search?q=${query}`)
+  // filtered products
+  filteredProducts(query:string):Observable<IProductResponse>{
+    return this._HttpClient.get<IProductResponse>(`${environment.apiUrl}products/search?q=${query}`)
   }
+    // get cart
+
   getCart(userId:string):Observable<any>{
     return this._HttpClient.get(`${environment.apiUrl}carts/user/${userId}`)
   }
+  // add to cart
   addToCart(postData: any):Observable<any>{
     return this._HttpClient.post(`${environment.apiUrl}carts/add`, postData)
   }
+  // update to cart
   updateToCart(postData: any, user_id:string):Observable<any>{
     return this._HttpClient.put(`${environment.apiUrl}carts/${user_id}`, postData)
   }

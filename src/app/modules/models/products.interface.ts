@@ -11,3 +11,9 @@ export interface IProduct{
   thumbnail: string,
   images: string[]
 }
+export interface IProductResponse{
+  products: [],
+  total: number,
+  skip: number,
+  limit: number
+}

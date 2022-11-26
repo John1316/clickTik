@@ -52,7 +52,7 @@
                 <div class="products__card--category">In stock: <span>{{product.stock}}</span></div>
                 <form [formGroup]="addToCart" (ngSubmit)="onSubmit(addToCart , product.id)">
                   <input type="text" class="form__input"  formControlName="quantity" placeholder="Quantity">
-                  <button type="submit" class="products__card--btn">ADD TO CART</button>
+                  <button type="submit" class="products__card--btn" [disabled]="!addToCart.valid">ADD TO CART</button>
                 </form>
               </div>
             </div>

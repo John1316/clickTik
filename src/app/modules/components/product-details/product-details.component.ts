@@ -73,6 +73,7 @@ export class ProductDetailsComponent implements OnInit {
     addToCart:FormGroup = new FormGroup({
       'quantity': new FormControl('', Validators.required)
     })
+    // on submit add to cart
     onSubmit(addToCart:FormGroup , id:number){
       console.log(addToCart.value, id);
       this._ApiService.updateToCart(
@@ -96,6 +97,7 @@ export class ProductDetailsComponent implements OnInit {
         }
       )
     }
+    // on search field
   onSearchProduct(){
     this._ActivatedRoute.queryParamMap.subscribe(
       (params:Params) => {
