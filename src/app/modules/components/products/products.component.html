@@ -33,7 +33,17 @@
       </div>
       <div class="col-9">
         <div class="row_grid ">
+          <div class="col-12">
+            <div class="row_grid no-gutters products__filtered" *ngIf="filtered">
+              <div class="col-3">
+                <p class="products__filtered--found">({{filteredLimit}}) Products Found</p>
+              </div>
+              <div class="col-3">
+                <p class="products__filtered--sort"><span>Sort By:</span> Popularity</p>
 
+              </div>
+            </div>
+          </div>
           <div class="col-4" *ngFor="let product of products | paginate: { itemsPerPage: 9, currentPage: page }">
             <div class="products__card">
               <div class="image__container">
