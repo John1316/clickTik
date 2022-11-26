@@ -24,8 +24,9 @@
           <h4 class="products__h4">Products</h4>
           <div class="products__form" >
             <div class="form-check" *ngFor="let category of categories">
-              <input (change)="onChange($event)"  class="form-check-input" name="category" type="radio" id="{{category}}" value="{{category}}">
-              <label class="form-check-label" for="{{category}}">{{category}}</label>
+
+              <input (change)="onChange($event)"  class="form-check-input" name="category" type="radio" id="{{category.name}}" value="{{category.name}}">
+              <label class="form-check-label" for="{{category.name}}">{{category.name}} ({{category.count}})</label>
             </div>
 
           </div>
@@ -55,7 +56,7 @@
                 <p class="products__card--p" [title]="product.description">{{product.description}}</p>
                 <div class="products__card--dflex">
                   <div class="products__card--price" *ngIf="product.discountPercentage"> <s><span>{{product.price}}</span> USD</s></div>
-                  <div class="products__card--price"> <span>{{ product.price - ((product.price * product.discountPercentage) / 100)}}</span> USD</div>
+                  <div class="products__card--price"> <span>{{ product.price - ((product.price * product.discountPercentage) / 100) | number: '1.0-0'}}</span> USD</div>
                 </div>
                 <div class="products__card--category">Brand: <span>{{product.brand}}</span></div>
                 <div class="products__card--category">Category: <span>{{product.category}}</span></div>

@@ -14,7 +14,7 @@ export class ProductDetailsComponent implements OnInit {
   page: number = 1;
   filteredLimit!:number;
   filtered:boolean =  false;
-  categories: string[]= [];
+  categories: any[]= [];
   products: IProduct[]= [];
   loading!:boolean;
   categorySelected!:string;
@@ -26,9 +26,25 @@ export class ProductDetailsComponent implements OnInit {
     ) { }
   showCategories(){
     this.loading = true;
-    this._ApiService.getCategories().subscribe(
+    this._ApiService.getProducts().subscribe(
       (response) => {
-        this.categories = response;
+        // get all categories from products
+        let countArray = response.products.map(
+          (responseData:IProduct) =>{
+            return responseData.category;
+          }
+        )
+        // get all counts
+
+        let countsFunction = countArray.reduce((acc:any, value:any) => ({
+          ...acc,
+          [value]: (acc[value] || 0) + 1
+        }), []);
+        // make the array of objects with data of name and count
+        let categoriesArray = Object.entries(countsFunction).map(entry => {
+          return {name: entry[0],  count:entry[1]};
+        });
+        this.categories = categoriesArray
         this.loading = false;
 
       }

@@ -13,7 +13,8 @@ export class ProductsComponent implements OnInit {
   page: number = 1;
   filteredLimit!:number;
   filtered:boolean =  false;
-  categories : string[]= [];
+  categories : any[]= [];
+  categoriesTest !: string;
   products : IProduct[]= [];
   loading!:boolean;
   searchKey!:string;
@@ -25,18 +26,22 @@ export class ProductsComponent implements OnInit {
     ) { }
     // show data
     // show categories
-  showCategories(){
-    this.loading = true;
-    this._ApiService.getCategories().subscribe(
-      (response) => {
-        this.categories = response;
-        this.loading = false;
+  // showCategories(){
+  //   this.loading = true;
+  //   this._ApiService.getCategories().subscribe(
+  //     (response) => {
+  //       this.categories = response;
+  //       this.loading = false;
 
-      }
-    )
-  }
+  //     }
+  //   )
+  // }
   // show products
+  goBackHome(){
+    this.showProducts();
+    this._Router.navigate(['/'])
 
+  }
   showProducts(){
     this.loading = true
     this._ApiService.getProducts().subscribe(
@@ -44,12 +49,24 @@ export class ProductsComponent implements OnInit {
         this.loading = false;
         this.products = response.products;
         this.filtered = false
-        // let countArray = this.products.forEach(
-        //   (responseData:IProduct) =>{
-        //     console.log(responseData.category);
+        // get all categories from products
+        let countArray = this.products.map(
+          (responseData:IProduct) =>{
+            return responseData.category;
+          }
+        )
+        // get all counts
 
-        //   }
-        // )
+        let countsFunction = countArray.reduce((acc:any, value:any) => ({
+          ...acc,
+          [value]: (acc[value] || 0) + 1
+        }), []);
+        // make the array of objects with data of name and count
+        let categoriesArray = Object.entries(countsFunction).map(entry => {
+          return {name: entry[0],  count:entry[1]};
+        });
+        this.categories = categoriesArray
+
       }
     )
 
@@ -118,7 +135,7 @@ export class ProductsComponent implements OnInit {
     )
   }
   ngOnInit(): void {
-    this.showCategories();
+    // this.showCategories();
     this.showProducts();
     this.onSearchProduct()
   }

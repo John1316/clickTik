@@ -12,11 +12,7 @@ export class ApiService {
   constructor(
     private _HttpClient:HttpClient
   ) { }
-  // get category
 
-  getCategories():Observable<string[]>{
-    return this._HttpClient.get<string[]>(`${environment.apiUrl}products/categories`)
-  }
   // get products
 
   getProducts():Observable<IProductResponse>{
