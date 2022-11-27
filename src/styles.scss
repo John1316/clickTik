@@ -381,7 +381,7 @@ button[type="submit"]{
   position: sticky;
   top: 0;
   z-index: 10;
-  border:1px solid #424242;
+  border-bottom:1px solid #424242;
   &__content{
     display: flex;
     align-items: center;
