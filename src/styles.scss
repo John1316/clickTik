@@ -369,7 +369,12 @@ button[type="submit"]{
 // navbar
 
 .header{
+
   height: 6rem;
+  @media screen and (max-width: 768px) {
+
+    height: 8rem;
+  }
   background-color: #fff;
   display: flex;
   justify-content: space-around;
@@ -382,6 +387,9 @@ button[type="submit"]{
     align-items: center;
     justify-content: space-between;
     height: 100%;
+    @media screen and (max-width: 500px) {
+      display: unset;
+    }
     &--cart{
       position: relative;
       &-img{
@@ -464,7 +472,10 @@ button[type="submit"]{
   justify-content: space-evenly;
   align-items: center;
   text-transform: uppercase;
-  height: 100%;
+  @media screen and (min-width: 768px) {
+
+    height: 100%;
+  }
   li {
     a{
 
@@ -494,39 +505,39 @@ button[type="submit"]{
 }
 
 /*Stying for small screens*/
-@media screen and (max-width: 800px){
-  header{
-      position: fixed;
-      z-index: 3;
-  }
-  .hamburger{
-      display:block;
-      position: absolute;
-      cursor: pointer;
-      right: 5%;
-      top: 50%;
-      transform: translate(-5%, -50%);
-      z-index: 2;
-      transition: all 0.7s ease;
-  }
-  .nav-links{
-      position: fixed;
-      background: #131418;
-      height: 100vh;
-      width: 100%;
-      flex-direction: column;
-      clip-path: circle(50px at 90% -20%);
-      -webkit-clip-path: circle(50px at 90% -10%);
-      transition: all 1s ease-out;
-      pointer-events: none;
-  }
-  .nav-links.open{
-      clip-path: circle(1000px at 90% -10%);
-      -webkit-clip-path: circle(1000px at 90% -10%);
-      pointer-events: all;
-  }
+// @media screen and (max-width: 800px){
+//   header{
+//       position: fixed;
+//       z-index: 3;
+//   }
+//   .hamburger{
+//       display:block;
+//       position: absolute;
+//       cursor: pointer;
+//       right: 5%;
+//       top: 50%;
+//       transform: translate(-5%, -50%);
+//       z-index: 2;
+//       transition: all 0.7s ease;
+//   }
+//   .nav-links{
+//       position: fixed;
+//       background: #131418;
+//       height: 100vh;
+//       width: 100%;
+//       flex-direction: column;
+//       clip-path: circle(50px at 90% -20%);
+//       -webkit-clip-path: circle(50px at 90% -10%);
+//       transition: all 1s ease-out;
+//       pointer-events: none;
+//   }
+//   .nav-links.open{
+//       clip-path: circle(1000px at 90% -10%);
+//       -webkit-clip-path: circle(1000px at 90% -10%);
+//       pointer-events: all;
+//   }
 
-}
+// }
 /*Animating Hamburger Icon on Click*/
 
 //  form
@@ -635,12 +646,70 @@ button[type="submit"]{
 // section products
 .products{
   padding: 60px 0;
+  &__grid{
+    @media screen and (max-width: 1024px) {
+      -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+      flex: 0 0 auto;
+      width: 50%;
+    }
+    @media screen and (max-width: 500px) {
+      -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+      flex: 0 0 auto;
+      width: 100%;
+      padding: 0;
+
+    }
+    &--filter{
+      @media screen and (max-width:820px) {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
+        width: 35%;
+      }
+      @media screen and (max-width:500px) {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
+        width: 100%;
+
+      }
+    }
+    &--products{
+      @media screen and (max-width:820px) {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
+        width: 65%;
+        .row_grid{
+          margin: 0;
+        }
+      }
+      @media screen and (max-width:500px) {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
+        width: 100%;
+        margin-top: 20px;
+      }
+    }
+  }
   &__h4{
     margin-bottom: 10px;
   }
   &__filtered{
     justify-content: space-between;
     margin-bottom: 10px;
+    &--grid{
+      @media screen and (max-width: 500px) {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
+        width: 50%;
+        margin-bottom: 20px;
+      }
+    }
     &--found{
       font-size: 14px;
       line-height: 17px;

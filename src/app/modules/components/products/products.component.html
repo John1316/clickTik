@@ -19,7 +19,7 @@
           </ol>
         </div>
       </div>
-      <div class="col-3">
+      <div class="col-3 products__grid--filter">
         <div class="products__form--filter">
           <h4 class="products__h4">Products</h4>
           <div class="products__form" >
@@ -32,7 +32,7 @@
           </div>
         </div>
       </div>
-      <div class="col-9">
+      <div class="col-9 products__grid--products">
         <div class="row_grid ">
           <div class="col-12">
             <div class="row_grid no-gutters products__filtered" *ngIf="filtered">
@@ -45,7 +45,7 @@
               </div>
             </div>
           </div>
-          <div class="col-4" *ngFor="let product of products | paginate: { itemsPerPage: 9, currentPage: page }">
+          <div class="col-4 products__grid" *ngFor="let product of products | paginate: { itemsPerPage: 9, currentPage: page }">
             <div class="products__card">
               <div class="image__container">
                 <img [src]="product.images[0]" alt="" class="products__card--img">
