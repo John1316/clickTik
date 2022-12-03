@@ -7,13 +7,13 @@
         <div class="breadcrumb" *ngIf="filtered">
           <ol>
             <li>
-              <a (click)="showProducts()">Home</a>
+              <a (click)="goBackHome()">Home</a>
             </li>
             <li>
-              <a (click)="showProducts()">Products</a>
+              <a (click)="goBackHome()">Products</a>
             </li>
             <li >
-              <a class="disabled">{{searchKey}}</a>
+              <a class="disabled">{{keyValue}}</a>
             </li>
 
           </ol>
@@ -22,11 +22,17 @@
       <div class="col-3 products__grid--filter">
         <div class="products__form--filter">
           <h4 class="products__h4">Products</h4>
+
           <div class="products__form" >
+            <div class="form-check">
+
+              <input (change)="onChange($event)"  class="form-check-input" name="category" type="radio" id="all" value="all">
+              <label class="form-check-label" for="all">All</label>
+            </div>
             <div class="form-check" *ngFor="let category of categories;">
 
-              <input (change)="onChange($event)"  class="form-check-input" name="category" type="radio" id="{{category.name}}" value="{{category.name}}">
-              <label class="form-check-label" for="{{category.name}}">{{category.name}} ({{category.count}})</label>
+              <input (change)="onChange($event)"  class="form-check-input" name="category" type="radio" id="{{category}}" value="{{category}}">
+              <label class="form-check-label" for="{{category}}">{{category}}</label>
             </div>
 
           </div>
@@ -61,10 +67,11 @@
                 <div class="products__card--category">Brand: <span>{{product.brand}}</span></div>
                 <div class="products__card--category">Category: <span>{{product.category}}</span></div>
                 <div class="products__card--category">In stock: <span>{{product.stock}}</span></div>
-                <form [formGroup]="addToCart" (ngSubmit)="onSubmit(addToCart , product.id)">
+                <button type="button"  class="products__card--btn" (click)="openModel(product.id, product.title)">ADD TO CART</button>
+                <!-- <form [formGroup]="addToCart" (ngSubmit)="onSubmit(addToCart , product.id)">
                   <input type="text" class="form__input"  formControlName="quantity" placeholder="Quantity">
-                  <button type="submit" class="products__card--btn" [disabled]="!addToCart.valid">ADD TO CART</button>
-                </form>
+                </form> -->
+
               </div>
             </div>
 
@@ -89,3 +96,14 @@
     <div></div>
   </div>
 </section>
+
+<div class="modal hidden">
+  <button class="close-modal" (click)="closeModal()">&times;</button>
+  <h1>{{productCart?.title}}</h1>
+  <form [formGroup]="addToCart" (ngSubmit)="onSubmit(addToCart , productCart.id)">
+    <input type="number" class="form__input"  formControlName="quantity" placeholder="Quantity">
+    <button type="submit"  class="products__card--btn" >ADD TO CART</button>
+
+  </form>
+</div>
+<div class="overlay hidden"></div>

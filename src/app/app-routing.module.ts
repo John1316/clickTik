@@ -5,8 +5,8 @@ import { AuthGuard } from './core/services/auth.guard';
 const routes: Routes = [
   { path: '',  redirectTo: 'products' , pathMatch:'full'},
   { path: 'login', loadChildren: () => import('./modules/components/login/login.module').then(m => m.LoginModule) },
-  { path: 'products', canActivate: [AuthGuard] , loadChildren: () => import('./modules/components/products/products.module').then(m => m.ProductsModule) },
-  { path: 'product-details/:category', loadChildren: () => import('./modules/components/product-details/product-details.module').then(m => m.ProductDetailsModule) }];
+  { path: 'products', canActivate: [AuthGuard] , loadChildren: () => import('./modules/components/products/products.module').then(m => m.ProductsModule) }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes , {useHash: true})],

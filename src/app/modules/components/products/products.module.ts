@@ -5,7 +5,6 @@ import { ProductsRoutingModule } from './products-routing.module';
 import { ProductsComponent } from './products.component';
 import { NgxPaginationModule } from "ngx-pagination";
 import { ReactiveFormsModule } from '@angular/forms';
-
 @NgModule({
   declarations: [
     ProductsComponent,
